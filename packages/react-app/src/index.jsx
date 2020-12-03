@@ -8,7 +8,7 @@ let subgraphUri = "http://localhost:8000/subgraphs/name/scaffold-eth/your-contra
 
 const client = new ApolloClient({
   uri: subgraphUri,
-  cache: new InMemoryCache()
+  cache: new InMemoryCache(),
 });
 
 ReactDOM.render(

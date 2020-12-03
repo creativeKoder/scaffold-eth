@@ -81,7 +81,7 @@ start_combined_node() {
 postgres_url="postgresql://$postgres_user:$postgres_pass@$postgres_host/$postgres_db"
 
 wait_for_ipfs "$ipfs"
-wait_for "$postgres_host:5432" -t 120
+wait_for "$postgres_host" -t 120
 sleep 5
 
 trap save_coredumps EXIT

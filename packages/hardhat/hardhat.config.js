@@ -40,11 +40,17 @@ module.exports = {
 
   networks: {
     localhost: {
-      url: "http://localhost:8545",
+      url: "http://0.0.0.0:8545",
       /*
         notice no mnemonic here? it will just use account 0 of the hardhat node to deploy
         (you can put in a mnemonic here to set the deployer locally)
       */
+    },
+    development: {
+      url: "http://0.0.0.0:8545",
+      accounts: {
+        mnemonic: mnemonic(),
+      },
     },
     rinkeby: {
       url: "https://rinkeby.infura.io/v3/12895cbf450946249bed703bae268231", //<---- YOUR INFURA ID! (or it won't work)
@@ -71,7 +77,7 @@ module.exports = {
       },
     },
     xdai: {
-      url: 'https://dai.poa.network',
+      url: "https://dai.poa.network",
       gasPrice: 1000000000,
       accounts: {
         mnemonic: mnemonic(),
@@ -79,17 +85,17 @@ module.exports = {
     },
   },
   solidity: {
-    version: "0.6.7",
+    version: "0.7.3",
     settings: {
       optimizer: {
         enabled: true,
-        runs: 200
-      }
-    }
+        runs: 200,
+      },
+    },
   },
 };
 
-const DEBUG = false;
+const DEBUG = true;
 
 function debug(text) {
   if (DEBUG) {

@@ -1,7 +1,5 @@
 version: '3.7'
-
 services:
-
   graph-node:
     image: graphprotocol/graph-node
     ports:
@@ -14,22 +12,19 @@ services:
       - ipfs
       - postgres
     environment:
-      postgres_host: postgres
+      postgres_host: postgres:5432
       postgres_user: graph-node
       postgres_pass: let-me-in
       postgres_db: graph-node
       ipfs: 'ipfs:5001'
-      ethereum: "localhost:http://ganache:8545"
-      # ethereum: "mainnet:http://ganache:8545"
+      ethereum: 'localhost:http://host.docker.internal:8545'
       RUST_LOG: info
-
   ipfs:
     image: ipfs/go-ipfs:v0.4.23
     ports:
       - '5001:5001'
     volumes:
       - ./data/ipfs:/data/ipfs
-
   postgres:
     image: postgres:11
     ports:
@@ -41,9 +36,3 @@ services:
       POSTGRES_DB: graph-node
     volumes:
       - ./data/postgres:/var/lib/postgresql/data
-
-  ganache:
-    image: trufflesuite/ganache-cli
-    ports:
-      - "8545:8545"
-    command: -i 15 --gasLimit 8000000 --deterministic
